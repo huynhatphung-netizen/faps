@@ -45,11 +45,25 @@
                         <span>COURSE</span>
                     </div>
                     <div class="space-y-3">
-                        <div><a href="#" class="text-blue-600 hover:underline">Fall2025</a></div>
-                        <div><a href="#" class="text-blue-600 hover:underline">Spring2026</a></div>
+                        <div>
+                            <span class="font-bold text-gray-900">Fall2025</span>
+                            <ul class="pl-4 mt-2 space-y-2 text-xs text-gray-700">
+                                <li><a href="#" onclick="loadCourse('CEA201', event)" class="course-item text-blue-600 hover:underline">Computer Organization and Architecture (CEA201) (SE2021, from 05/01/2026 - 26/03/2026)</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <span class="font-bold text-gray-900">Spring2026</span>
+                            <ul class="pl-4 mt-2 space-y-2 text-xs text-gray-700" id="course-list-spring">
+                                <li><a href="#" onclick="loadCourse('CSI106', event)" class="course-item text-blue-600 hover:underline">Introduction to Computer Science (CSI106) (SE2021, from 05/01/2026 - 26/03/2026)</a></li>
+                                <li><a href="#" onclick="loadCourse('MAE101', event)" class="course-item text-blue-600 hover:underline">Mathematics for Engineering (MAE101) (SE2021, from 07/01/2026 - 28/03/2026)</a></li>
+                                <li><a href="#" onclick="loadCourse('PRF192', event)" class="course-item text-blue-600 hover:underline">Programming Fundamentals (PRF192) (SE2021, from 07/01/2026 - 28/03/2026)</a></li>
+                                <li><a href="#" onclick="loadCourse('SSA101', event)" class="course-item text-blue-600 hover:underline">Academic skills (SSA101) (SE2021, from 07/01/2026 - 28/03/2026)</a></li>
+                                <li><a href="#" onclick="loadCourse('VOV114', event)" class="course-item text-blue-600 hover:underline">Vovinam 1 (VOV114) (H1_VOV114_5E, from 06/01/2026 - 24/02/2026)</a></li>
+                            </ul>
+                        </div>
                         <div>
                             <span class="font-bold text-gray-900">Summer2026</span>
-                            <ul class="pl-4 mt-2 space-y-2 text-xs text-gray-700" id="course-list">
+                            <ul class="pl-4 mt-2 space-y-2 text-xs text-gray-700">
                                 <li><a href="#" onclick="loadCourse('DBA103', event)" class="course-item text-blue-600 hover:underline">Traditional musical instrument (DBA103) (H1_DBA103_2A, from 12/05/2026 - 30/06/2026)</a></li>
                                 <li><a href="#" onclick="loadCourse('MAD101', event)" class="course-item text-blue-600 hover:underline">Discrete mathematics (MAD101) (SE2017, from 11/05/2026 - 23/07/2026)</a></li>
                                 <li><a href="#" onclick="loadCourse('NWC204', event)" class="course-item text-blue-600 hover:underline">Computer Networking (NWC204) (SE2017, from 12/05/2026 - 24/07/2026)</a></li>
@@ -110,24 +124,141 @@
     <!-- JavaScript Xử Lý Dữ Liệu -->
     <script>
         const database = {
+            "CEA201": {
+                header: "Computer Organization and Architecture (CEA201) (SE2021, from 05/01/2026 - 26/03/2026)",
+                avg: "8.7",
+                status: "PASSED",
+                rows: `
+                    <tr><td class="p-2 border" rowspan="3">Assignments</td><td class="p-2 border">Assignment 1</td><td class="p-2 border">10.0 %</td><td class="p-2 border">9.6</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border">Assignment 2</td><td class="p-2 border">10.0 %</td><td class="p-2 border">9.6</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">20.0 %</td><td class="p-2 border">9.6</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="5">Exercises</td><td class="p-2 border">Exercise 1</td><td class="p-2 border">10.0 %</td><td class="p-2 border">9</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border">Exercise 2</td><td class="p-2 border">10.0 %</td><td class="p-2 border">8.9</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border">Exercise 3</td><td class="p-2 border">10.0 %</td><td class="p-2 border">9</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border">Exercise 4</td><td class="p-2 border">10.0 %</td><td class="p-2 border">9</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">40.0 %</td><td class="p-2 border">9</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="2">Final Exam</td><td class="p-2 border">Final Exam</td><td class="p-2 border">40.0 %</td><td class="p-2 border">8</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">40.0 %</td><td class="p-2 border">8</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="2">Final Exam Resit</td><td class="p-2 border">Final Exam Resit</td><td class="p-2 border">40.0 %</td><td class="p-2 border"></td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">40.0 %</td><td class="p-2 border"></td><td class="p-2 border"></td></tr>
+                `
+            },
+            "CSI106": {
+                header: "Introduction to Computer Science (CSI106) (SE2021, from 05/01/2026 - 26/03/2026)",
+                avg: "7.",
+                status: "PASSED",
+                rows: `
+                    <tr><td class="p-2 border" rowspan="3">Group Presentation</td><td class="p-2 border">Group Presentation 1</td><td class="p-2 border">5.0 %</td><td class="p-2 border">8</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border">Group Presentation 2</td><td class="p-2 border">5.0 %</td><td class="p-2 border">3</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">10.0 %</td><td class="p-2 border">5.5</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="3">Lab</td><td class="p-2 border">Lab 1</td><td class="p-2 border">10.0 %</td><td class="p-2 border">8.3</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border">Lab 2</td><td class="p-2 border">10.0 %</td><td class="p-2 border">2.5</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">20.0 %</td><td class="p-2 border">5.4</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="4">Progress Test</td><td class="p-2 border">Progress Test 1</td><td class="p-2 border">10.0 %</td><td class="p-2 border">9.9</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border">Progress Test 2</td><td class="p-2 border">10.0 %</td><td class="p-2 border">9.8</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border">Progress Test 3</td><td class="p-2 border">10.0 %</td><td class="p-2 border">4.6</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">30.0 %</td><td class="p-2 border">8.1</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="2">Final Exam</td><td class="p-2 border">Final Exam</td><td class="p-2 border">40.0 %</td><td class="p-2 border">8.4</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">40.0 %</td><td class="p-2 border">8.4</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="2">Final Exam Resit</td><td class="p-2 border">Final Exam Resit</td><td class="p-2 border">40.0 %</td><td class="p-2 border"></td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">40.0 %</td><td class="p-2 border"></td><td class="p-2 border"></td></tr>
+                `
+            },
+            "MAE101": {
+                header: "Mathematics for Engineering (MAE101) (SE2021, from 07/01/2026 - 28/03/2026)",
+                avg: "6.9",
+                status: "PASSED",
+                rows: `
+                    <tr><td class="p-2 border" rowspan="4">Assignments/Exercises</td><td class="p-2 border">Assignments/Exercises 1</td><td class="p-2 border">10.0 %</td><td class="p-2 border">10</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border">Assignments/Exercises 2</td><td class="p-2 border">10.0 %</td><td class="p-2 border">10</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border">Assignments/Exercises 3</td><td class="p-2 border">10.0 %</td><td class="p-2 border">3.4</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">30.0 %</td><td class="p-2 border">7.8</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="4">Progress Test</td><td class="p-2 border">Progress Test 1</td><td class="p-2 border">10.0 %</td><td class="p-2 border">3.4</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border">Progress Test 2</td><td class="p-2 border">10.0 %</td><td class="p-2 border">6</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border">Progress Test 3</td><td class="p-2 border">10.0 %</td><td class="p-2 border">7.5</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">30.0 %</td><td class="p-2 border">5.6</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="2">Final Exam</td><td class="p-2 border">Final Exam</td><td class="p-2 border">40.0 %</td><td class="p-2 border">3.8</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">40.0 %</td><td class="p-2 border">3.8</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="2">Final Exam Resit</td><td class="p-2 border">Final Exam Resit</td><td class="p-2 border">40.0 %</td><td class="p-2 border">7.2</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">40.0 %</td><td class="p-2 border">7.2</td><td class="p-2 border"></td></tr>
+                `
+            },
+            "PRF192": {
+                header: "Programming Fundamentals (PRF192) (SE2021, from 07/01/2026 - 28/03/2026)",
+                avg: "7.4",
+                status: "PASSED",
+                rows: `
+                    <tr><td class="p-2 border" rowspan="6">Workshop</td><td class="p-2 border">Workshop 1</td><td class="p-2 border">2.0 %</td><td class="p-2 border">3.5</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border">Workshop 2</td><td class="p-2 border">2.0 %</td><td class="p-2 border">3.5</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border">Workshop 3</td><td class="p-2 border">2.0 %</td><td class="p-2 border">4.9</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border">Workshop 4</td><td class="p-2 border">2.0 %</td><td class="p-2 border">4.9</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border">Workshop 5</td><td class="p-2 border">2.0 %</td><td class="p-2 border">4.9</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">10.0 %</td><td class="p-2 border">4.3</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="2">Assignment</td><td class="p-2 border">Assignment</td><td class="p-2 border">15.0 %</td><td class="p-2 border">3.5</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">15.0 %</td><td class="p-2 border">3.5</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="3">Progress Test</td><td class="p-2 border">Progress Test 1</td><td class="p-2 border">7.5 %</td><td class="p-2 border">8.6</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border">Progress Test 2</td><td class="p-2 border">7.5 %</td><td class="p-2 border">8.8</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">15.0 %</td><td class="p-2 border">8.7</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="2">Practical Exam</td><td class="p-2 border">Practical Exam</td><td class="p-2 border">30.0 %</td><td class="p-2 border">8</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">30.0 %</td><td class="p-2 border">8</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="2">Final Exam</td><td class="p-2 border">Final Exam</td><td class="p-2 border">30.0 %</td><td class="p-2 border">9.2</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">30.0 %</td><td class="p-2 border">9.</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="2">Final Exam Resit</td><td class="p-2 border">Final Exam Resit</td><td class="p-2 border">30.0 %</td><td class="p-2 border"></td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">30.0 %</td><td class="p-2 border"></td><td class="p-2 border"></td></tr>
+                `
+            },
+            "SSA101": {
+                header: "Academic skills (SSA101) (SE2021, from 07/01/2026 - 28/03/2026)",
+                avg: "8.",
+                status: "PASSED",
+                rows: `
+                    <tr><td class="p-2 border" rowspan="2">Quiz</td><td class="p-2 border">Quiz</td><td class="p-2 border">5.0 %</td><td class="p-2 border">8.8</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">5.0 %</td><td class="p-2 border">8.8</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="2">Participation</td><td class="p-2 border">Participation</td><td class="p-2 border">10.0 %</td><td class="p-2 border">7</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">10.0 %</td><td class="p-2 border">7</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="2">Progress Test</td><td class="p-2 border">Progress Test</td><td class="p-2 border">10.0 %</td><td class="p-2 border">10</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">10.0 %</td><td class="p-2 border">10</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="2">Project Part 1</td><td class="p-2 border">Project Part 1</td><td class="p-2 border">10.0 %</td><td class="p-2 border">8.8</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">10.0 %</td><td class="p-2 border">8.8</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="2">Project Part 2</td><td class="p-2 border">Project Part 2</td><td class="p-2 border">20.0 %</td><td class="p-2 border">10</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">20.0 %</td><td class="p-2 border">10</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="2">Project Part 3</td><td class="p-2 border">Project Part 3</td><td class="p-2 border">20.0 %</td><td class="p-2 border">8</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">20.0 %</td><td class="p-2 border">8</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="2">Final Exam</td><td class="p-2 border">Final Exam</td><td class="p-2 border">25.0 %</td><td class="p-2 border">8.6</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">25.0 %</td><td class="p-2 border">8.6</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="2">Final Exam Resit</td><td class="p-2 border">Final Exam Resit</td><td class="p-2 border">25.0 %</td><td class="p-2 border"></td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">25.0 %</td><td class="p-2 border"></td><td class="p-2 border"></td></tr>
+                `
+            },
+            "VOV114": {
+                header: "Vovinam 1 (VOV114) (H1_VOV114_5E, from 06/01/2026 - 24/02/2026)",
+                avg: "6.1",
+                status: "PASSED",
+                rows: `
+                    <tr><td class="p-2 border" rowspan="2">Final Exam</td><td class="p-2 border">Final Exam</td><td class="p-2 border">100.0 %</td><td class="p-2 border">6.1</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">100.0 %</td><td class="p-2 border">6.1</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="2">Final Exam Resit</td><td class="p-2 border">Final Exam Resit</td><td class="p-2 border">100.0 %</td><td class="p-2 border"></td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">100.0 %</td><td class="p-2 border"></td><td class="p-2 border"></td></tr>
+                `
+            },
             "DBA103": {
                 header: "Traditional musical instrument (DBA103) (H1_DBA103_2A, from 12/05/2026 - 30/06/2026)",
-                avg: "8",
+                avg: "7.5",
                 status: "PASSED",
                 rows: `
                     <tr><td class="p-2 border" rowspan="2">Assignment</td><td class="p-2 border">Assignment</td><td class="p-2 border">15.0 %</td><td class="p-2 border">8</td><td class="p-2 border"></td></tr>
                     <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">15.0 %</td><td class="p-2 border">8</td><td class="p-2 border"></td></tr>
-                    <tr><td class="p-2 border" rowspan="2">Participation</td><td class="p-2 border">Participation</td><td class="p-2 border">15.0 %</td><td class="p-2 border">8</td><td class="p-2 border"></td></tr>
-                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">15.0 %</td><td class="p-2 border">8</td><td class="p-2 border"></td></tr>
-                    <tr><td class="p-2 border" rowspan="2">Final Exam</td><td class="p-2 border">Final Exam</td><td class="p-2 border">70.0 %</td><td class="p-2 border">8</td><td class="p-2 border"></td></tr>
-                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">70.0 %</td><td class="p-2 border">8</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="2">Participation</td><td class="p-2 border">Participation</td><td class="p-2 border">15.0 %</td><td class="p-2 border">10</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">15.0 %</td><td class="p-2 border">10</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="2">Final Exam</td><td class="p-2 border">Final Exam</td><td class="p-2 border">70.0 %</td><td class="p-2 border">6.8</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">70.0 %</td><td class="p-2 border">6.8</td><td class="p-2 border"></td></tr>
                     <tr><td class="p-2 border" rowspan="2">Final Exam Resit</td><td class="p-2 border">Final Exam Resit</td><td class="p-2 border">70.0 %</td><td class="p-2 border"></td><td class="p-2 border"></td></tr>
                     <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">70.0 %</td><td class="p-2 border"></td><td class="p-2 border"></td></tr>
                 `
             },
             "MAD101": {
                 header: "Discrete mathematics (MAD101) (SE2017, from 11/05/2026 - 23/07/2026)",
-                avg: "8.5",
+                avg: "7.0",
                 status: "PASSED",
                 rows: `
                     <tr><td class="p-2 border" rowspan="2">Programming Assignment</td><td class="p-2 border">Programming Assignment</td><td class="p-2 border">10.0 %</td><td class="p-2 border">9.2</td><td class="p-2 border"></td></tr>
@@ -139,15 +270,15 @@
                     <tr><td class="p-2 border">Progress Test 2</td><td class="p-2 border">10.0 %</td><td class="p-2 border">8.6</td><td class="p-2 border"></td></tr>
                     <tr><td class="p-2 border">Progress Test 3</td><td class="p-2 border">10.0 %</td><td class="p-2 border">9</td><td class="p-2 border"></td></tr>
                     <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">30.0 %</td><td class="p-2 border">9.1</td><td class="p-2 border"></td></tr>
-                    <tr><td class="p-2 border" rowspan="2">Final Exam</td><td class="p-2 border">Final Exam</td><td class="p-2 border">40.0 %</td><td class="p-2 border">8.2</td><td class="p-2 border"></td></tr>
-                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">40.0 %</td><td class="p-2 border">8.2</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="2">Final Exam</td><td class="p-2 border">Final Exam</td><td class="p-2 border">40.0 %</td><td class="p-2 border">4.4</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">40.0 %</td><td class="p-2 border">4.4</td><td class="p-2 border"></td></tr>
                     <tr><td class="p-2 border" rowspan="2">Final Exam Resit</td><td class="p-2 border">Final Exam Resit</td><td class="p-2 border">40.0 %</td><td class="p-2 border"></td><td class="p-2 border"></td></tr>
                     <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">40.0 %</td><td class="p-2 border"></td><td class="p-2 border"></td></tr>
                 `
             },
             "NWC204": {
                 header: "Computer Networking (NWC204) (SE2017, from 12/05/2026 - 24/07/2026)",
-                avg: "8.1",
+                avg: "7.2",
                 status: "PASSED",
                 rows: `
                     <tr><td class="p-2 border" rowspan="4">Lab</td><td class="p-2 border">Lab 1</td><td class="p-2 border">6.7 %</td><td class="p-2 border">8.7</td><td class="p-2 border"></td></tr>
@@ -159,15 +290,15 @@
                     <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">20.0 %</td><td class="p-2 border">8</td><td class="p-2 border"></td></tr>
                     <tr><td class="p-2 border" rowspan="2">Project</td><td class="p-2 border">Project</td><td class="p-2 border">30.0 %</td><td class="p-2 border">8</td><td class="p-2 border"></td></tr>
                     <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">30.0 %</td><td class="p-2 border">8</td><td class="p-2 border"></td></tr>
-                    <tr><td class="p-2 border" rowspan="2">Final Exam</td><td class="p-2 border">Final Exam</td><td class="p-2 border">30.0 %</td><td class="p-2 border">7.8</td><td class="p-2 border"></td></tr>
-                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">30.0 %</td><td class="p-2 border">7.8</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="2">Final Exam</td><td class="p-2 border">Final Exam</td><td class="p-2 border">30.0 %</td><td class="p-2 border">4.8</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">30.0 %</td><td class="p-2 border">4.8</td><td class="p-2 border"></td></tr>
                     <tr><td class="p-2 border" rowspan="2">Final Exam Resit</td><td class="p-2 border">Final Exam Resit</td><td class="p-2 border">30.0 %</td><td class="p-2 border"></td><td class="p-2 border"></td></tr>
                     <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">30.0 %</td><td class="p-2 border"></td><td class="p-2 border"></td></tr>
                 `
             },
             "OSG202": {
                 header: "Operating Systems (OSG202) (SE2017, from 12/05/2026 - 24/07/2026)",
-                avg: "8.6",
+                avg: "7.7",
                 status: "PASSED",
                 rows: `
                     <tr><td class="p-2 border" rowspan="5">Lab</td><td class="p-2 border">Lab 1</td><td class="p-2 border">5.0 %</td><td class="p-2 border">8</td><td class="p-2 border"></td></tr>
@@ -180,15 +311,15 @@
                     <tr><td class="p-2 border" rowspan="3">Progress Tests</td><td class="p-2 border">Progress Test 1</td><td class="p-2 border">10.0 %</td><td class="p-2 border">8.5</td><td class="p-2 border"></td></tr>
                     <tr><td class="p-2 border">Progress Test 2</td><td class="p-2 border">10.0 %</td><td class="p-2 border">10</td><td class="p-2 border"></td></tr>
                     <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">20.0 %</td><td class="p-2 border">9.3</td><td class="p-2 border"></td></tr>
-                    <tr><td class="p-2 border" rowspan="2">Final Exam</td><td class="p-2 border">Final Exam</td><td class="p-2 border">40.0 %</td><td class="p-2 border">8.4</td><td class="p-2 border"></td></tr>
-                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">40.0 %</td><td class="p-2 border">8.4</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="2">Final Exam</td><td class="p-2 border">Final Exam</td><td class="p-2 border">40.0 %</td><td class="p-2 border">6.2</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">40.0 %</td><td class="p-2 border">6.2</td><td class="p-2 border"></td></tr>
                     <tr><td class="p-2 border" rowspan="2">Final Exam Resit</td><td class="p-2 border">Final Exam Resit</td><td class="p-2 border">40.0 %</td><td class="p-2 border"></td><td class="p-2 border"></td></tr>
                     <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">40.0 %</td><td class="p-2 border"></td><td class="p-2 border"></td></tr>
                 `
             },
             "PRO192": {
                 header: "Object-Oriented Programming (PRO192) (SE2017, from 11/05/2026 - 23/07/2026)",
-                avg: "7.2",
+                avg: "5.7",
                 status: "PASSED",
                 rows: `
                     <tr><td class="p-2 border" rowspan="7">Labs</td><td class="p-2 border">Lab 1</td><td class="p-2 border">1.7 %</td><td class="p-2 border">8.6</td><td class="p-2 border"></td></tr>
@@ -201,10 +332,10 @@
                     <tr><td class="p-2 border" rowspan="3">Progress Tests</td><td class="p-2 border">Progress Test 1</td><td class="p-2 border">5.0 %</td><td class="p-2 border">8</td><td class="p-2 border"></td></tr>
                     <tr><td class="p-2 border">Progress Test 2</td><td class="p-2 border">5.0 %</td><td class="p-2 border">8.3</td><td class="p-2 border"></td></tr>
                     <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">10.0 %</td><td class="p-2 border">8.2</td><td class="p-2 border"></td></tr>
-                    <tr><td class="p-2 border" rowspan="2">Assignment</td><td class="p-2 border">Assignment</td><td class="p-2 border">20.0 %</td><td class="p-2 border">8</td><td class="p-2 border"></td></tr>
-                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">20.0 %</td><td class="p-2 border">8</td><td class="p-2 border"></td></tr>
-                    <tr><td class="p-2 border" rowspan="2">Practical Exam</td><td class="p-2 border">Practical Exam</td><td class="p-2 border">30.0 %</td><td class="p-2 border">5.</td><td class="p-2 border"></td></tr>
-                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">30.0 %</td><td class="p-2 border">5.5</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="2">Assignment</td><td class="p-2 border">Assignment</td><td class="p-2 border">20.0 %</td><td class="p-2 border">6</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">20.0 %</td><td class="p-2 border">6</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="2">Practical Exam</td><td class="p-2 border">Practical Exam</td><td class="p-2 border">30.0 %</td><td class="p-2 border">2</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">30.0 %</td><td class="p-2 border">2</td><td class="p-2 border"></td></tr>
                     <tr><td class="p-2 border" rowspan="2">Final Exam</td><td class="p-2 border">Final Exam</td><td class="p-2 border">30.0 %</td><td class="p-2 border">8.6</td><td class="p-2 border"></td></tr>
                     <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">30.0 %</td><td class="p-2 border">8.6</td><td class="p-2 border"></td></tr>
                     <tr><td class="p-2 border" rowspan="2">Final Exam Resit</td><td class="p-2 border">Final Exam Resit</td><td class="p-2 border">30.0 %</td><td class="p-2 border"></td><td class="p-2 border"></td></tr>
@@ -224,15 +355,15 @@
             },
             "WED201c": {
                 header: "Web Design (WED201c) (WED201c_SU26_14, from 21/05/2026 - 06/08/2026)",
-                avg: "8.3",
+                avg: "7.4",
                 status: "PASSED",
                 rows: `
-                    <tr><td class="p-2 border" rowspan="2">PE</td><td class="p-2 border">PE</td><td class="p-2 border">50.0 %</td><td class="p-2 border">7.4</td><td class="p-2 border"></td></tr>
-                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">50.0 %</td><td class="p-2 border">7.4</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="2">PE</td><td class="p-2 border">PE</td><td class="p-2 border">50.0 %</td><td class="p-2 border">4.5</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">50.0 %</td><td class="p-2 border">4.5</td><td class="p-2 border"></td></tr>
                     <tr><td class="p-2 border" rowspan="2">PE Resit</td><td class="p-2 border">PE Resit</td><td class="p-2 border">50.0 %</td><td class="p-2 border"></td><td class="p-2 border"></td></tr>
                     <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">50.0 %</td><td class="p-2 border"></td><td class="p-2 border"></td></tr>
-                    <tr><td class="p-2 border" rowspan="2">TE</td><td class="p-2 border">TE</td><td class="p-2 border">50.0 %</td><td class="p-2 border">9.2</td><td class="p-2 border"></td></tr>
-                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">50.0 %</td><td class="p-2 border">9.2</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="2">TE</td><td class="p-2 border">TE</td><td class="p-2 border">50.0 %</td><td class="p-2 border">8.2</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">50.0 %</td><td class="p-2 border">8.2</td><td class="p-2 border"></td></tr>
                     <tr><td class="p-2 border" rowspan="2">TE Resit</td><td class="p-2 border">TE Resit</td><td class="p-2 border">50.0 %</td><td class="p-2 border"></td><td class="p-2 border"></td></tr>
                     <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">50.0 %</td><td class="p-2 border"></td><td class="p-2 border"></td></tr>
                     <tr><td class="p-2 border" colspan="3">Bonus</td><td class="p-2 border">1</td><td class="p-2 border"></td></tr>
