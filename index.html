@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FPT University Academic Portal - Grade Report</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-800 font-sans">
+
+    <!-- Header -->
+    <header class="border-b bg-gray-50 py-3 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <h1 class="text-2xl font-bold text-gray-900">FPT University Academic Portal</h1>
+            <div class="flex items-center gap-3 text-sm">
+                <span class="bg-green-600 text-white px-2.5 py-1 rounded text-xs font-semibold">huynhatphung@gmail.com</span>
+                <a href="#" class="bg-green-600 text-white px-3 py-1 rounded text-xs font-semibold hover:bg-green-700">logout</a>
+                <span class="bg-green-700 text-white px-3 py-1 rounded text-xs font-semibold">CAMPUS: FPTU-Hồ Chí Minh</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="bg-gray-100 py-2 px-6 border-b text-sm">
+        <div class="max-w-7xl mx-auto">
+            <a href="#" class="text-blue-600 hover:underline">Home</a> | 
+            <span class="text-gray-600">Grade-book</span>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-6 py-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-6">Grade report for Phùng Nhật Huy (SE212046)</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+            
+            <!-- Cột trái: Danh sách kỳ và môn học -->
+            <div class="md:col-span-5 border rounded overflow-hidden shadow-sm">
+                <div class="bg-blue-600 text-white px-4 py-2 font-semibold text-center text-sm">
+                    Select a term, course ...
+                </div>
+                <div class="p-4 bg-white text-sm">
+                    <div class="grid grid-cols-2 font-bold border-b pb-2 mb-2 text-blue-900 bg-blue-50 p-2">
+                        <span>TERM</span>
+                        <span>COURSE</span>
+                    </div>
+                    <div class="space-y-3">
+                        <div><a href="#" class="text-blue-600 hover:underline">Fall2025</a></div>
+                        <div><a href="#" class="text-blue-600 hover:underline">Spring2026</a></div>
+                        <div>
+                            <span class="font-bold text-gray-900">Summer2026</span>
+                            <ul class="pl-4 mt-2 space-y-2 text-xs text-gray-700" id="course-list">
+                                <li><a href="#" onclick="loadCourse('DBA103')" class="course-item text-blue-600 hover:underline">Traditional musical instrument (DBA103)</a></li>
+                                <li><a href="#" onclick="loadCourse('MAD101')" class="course-item text-blue-600 hover:underline">Discrete mathematics (MAD101)</a></li>
+                                <li><a href="#" onclick="loadCourse('NWC204')" class="course-item text-blue-600 hover:underline">Computer Networking (NWC204)</a></li>
+                                <li><a href="#" onclick="loadCourse('OSG202')" class="course-item text-blue-600 hover:underline">Operating Systems (OSG202)</a></li>
+                                <li><a href="#" onclick="loadCourse('PRO192')" class="course-item text-blue-600 hover:underline">Object-Oriented Programming (PRO192)</a></li>
+                                <li><a href="#" onclick="loadCourse('VOV124')" class="course-item text-blue-600 hover:underline">Vovinam 2 (VOV124)</a></li>
+                                <li><a href="#" onclick="loadCourse('WED201c')" class="course-item text-blue-600 hover:underline">Web Design (WED201c)</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cột phải: Bảng điểm động -->
+            <div class="md:col-span-7 border rounded overflow-hidden shadow-sm">
+                <div id="course-title-header" class="bg-gray-100 text-center py-2 font-bold border-b text-gray-600 text-sm">
+                    ... then see report
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-sm">
+                        <thead>
+                            <tr class="bg-blue-600 text-white">
+                                <th class="p-2 border">GRADE CATEGORY</th>
+                                <th class="p-2 border">GRADE ITEM</th>
+                                <th class="p-2 border">WEIGHT</th>
+                                <th class="p-2 border">VALUE</th>
+                                <th class="p-2 border">COMMENT</th>
+                            </tr>
+                        </thead>
+                        <tbody id="grade-table-body">
+                            <!-- Dữ liệu được nạp qua JS -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Tổng kết -->
+                <div class="p-4 bg-gray-50 border-t space-y-2 text-sm" id="summary-section" style="display: none;">
+                    <div class="flex justify-between font-bold text-gray-800">
+                        <span>COURSE TOTAL AVERAGE</span>
+                        <span id="total-average"></span>
+                    </div>
+                    <div class="flex justify-between font-bold text-green-600">
+                        <span>STATUS</span>
+                        <span id="total-status"></span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-12 border-t py-6 px-6 bg-gray-50 text-center text-xs text-gray-600 space-y-2">
+        <p>Sinh viên có nhu cầu thực hiện các thủ tục, dịch vụ vui lòng liên hệ Trung tâm Dịch vụ Sinh viên tại Phòng 202, điện thoại : <strong>028.73005585</strong> , email: <strong>sschcm@fe.edu.vn</strong></p>
+        <p>© Powered by <a href="#" class="text-blue-600 hover:underline">FPT University</a> | <a href="#" class="text-blue-600 hover:underline">CMS</a> | <a href="#" class="text-blue-600 hover:underline">library</a> | <a href="#" class="text-blue-600 hover:underline">books24x7</a></p>
+    </footer>
+
+    <!-- JavaScript Xử Lý Dữ Liệu -->
+    <script>
+        const database = {
+            "DBA103": {
+                header: "Traditional musical instrument (DBA103) (H1_DBA103_2A, from 12/05/2026 - 30/06/2026)",
+                avg: "8.2",
+                status: "PASSED",
+                rows: `
+                    <tr><td class="p-2 border" rowspan="2">Practical</td><td class="p-2 border">Performance 1</td><td class="p-2 border">50.0 %</td><td class="p-2 border">8.0</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">50.0 %</td><td class="p-2 border">8.0</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="2">Final Practical</td><td class="p-2 border">Final Performance</td><td class="p-2 border">50.0 %</td><td class="p-2 border">8.4</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">50.0 %</td><td class="p-2 border">8.4</td><td class="p-2 border"></td></tr>
+                `
+            },
+            "MAD101": {
+                header: "Discrete mathematics (MAD101) (SE2017, from 11/05/2026 - 23/07/2026)",
+                avg: "7.0",
+                status: "PASSED",
+                rows: `
+                    <tr><td class="p-2 border" rowspan="2">Programming Assignment</td><td class="p-2 border">Programming Assignment</td><td class="p-2 border">10.0 %</td><td class="p-2 border">9.2</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">10.0 %</td><td class="p-2 border">9.2</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="3">Assignment</td><td class="p-2 border">Assignment 1</td><td class="p-2 border">10.0 %</td><td class="p-2 border">8</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border">Assignment 2</td><td class="p-2 border">10.0 %</td><td class="p-2 border">8</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">20.0 %</td><td class="p-2 border">8</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="4">Progress Test</td><td class="p-2 border">Progress Test 1</td><td class="p-2 border">10.0 %</td><td class="p-2 border">9.6</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border">Progress Test 2</td><td class="p-2 border">10.0 %</td><td class="p-2 border">8.6</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border">Progress Test 3</td><td class="p-2 border">10.0 %</td><td class="p-2 border">9</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">30.0 %</td><td class="p-2 border">9.1</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="2">Final Exam</td><td class="p-2 border">Final Exam</td><td class="p-2 border">40.0 %</td><td class="p-2 border">4.4</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">40.0 %</td><td class="p-2 border">4.4</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="2">Final Exam Resit</td><td class="p-2 border">Final Exam Resit</td><td class="p-2 border">40.0 %</td><td class="p-2 border"></td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">40.0 %</td><td class="p-2 border"></td><td class="p-2 border"></td></tr>
+                `
+            },
+            "NWC204": {
+                header: "Computer Networking (NWC204) (SE2017, from 12/05/2026 - 24/07/2026)",
+                avg: "7.2",
+                status: "PASSED",
+                rows: `
+                    <tr><td class="p-2 border" rowspan="4">Lab</td><td class="p-2 border">Lab 1</td><td class="p-2 border">6.7 %</td><td class="p-2 border">8.7</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border">Lab 2</td><td class="p-2 border">6.7 %</td><td class="p-2 border">8.7</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border">Lab 3</td><td class="p-2 border">6.7 %</td><td class="p-2 border">8.7</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">20.0 %</td><td class="p-2 border">8.7</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="3">Progress Test</td><td class="p-2 border">Progress Test 1</td><td class="p-2 border">10.0 %</td><td class="p-2 border">8</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border">Progress Test 2</td><td class="p-2 border">10.0 %</td><td class="p-2 border">8</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">20.0 %</td><td class="p-2 border">8</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="2">Project</td><td class="p-2 border">Project</td><td class="p-2 border">30.0 %</td><td class="p-2 border">8</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">30.0 %</td><td class="p-2 border">8</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="2">Final Exam</td><td class="p-2 border">Final Exam</td><td class="p-2 border">30.0 %</td><td class="p-2 border">4.8</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">30.0 %</td><td class="p-2 border">4.8</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="2">Final Exam Resit</td><td class="p-2 border">Final Exam Resit</td><td class="p-2 border">30.0 %</td><td class="p-2 border"></td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">30.0 %</td><td class="p-2 border"></td><td class="p-2 border"></td></tr>
+                `
+            },
+            "OSG202": {
+                header: "Operating Systems (OSG202) (SE2017, from 12/05/2026 - 24/07/2026)",
+                avg: "7.5",
+                status: "PASSED",
+                rows: `
+                    <tr><td class="p-2 border" rowspan="2">Assignment</td><td class="p-2 border">Assignment 1</td><td class="p-2 border">30.0 %</td><td class="p-2 border">7.5</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">30.0 %</td><td class="p-2 border">7.5</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="2">Final Exam</td><td class="p-2 border">Final Exam</td><td class="p-2 border">70.0 %</td><td class="p-2 border">7.5</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">70.0 %</td><td class="p-2 border">7.5</td><td class="p-2 border"></td></tr>
+                `
+            },
+            "PRO192": {
+                header: "Object-Oriented Programming (PRO192) (SE2017, from 11/05/2026 - 23/07/2026)",
+                avg: "8.0",
+                status: "PASSED",
+                rows: `
+                    <tr><td class="p-2 border" rowspan="2">Assignment</td><td class="p-2 border">PE/Assignments</td><td class="p-2 border">30.0 %</td><td class="p-2 border">8.5</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">30.0 %</td><td class="p-2 border">8.5</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="2">Final Exam</td><td class="p-2 border">Final Practical Exam</td><td class="p-2 border">70.0 %</td><td class="p-2 border">7.8</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">70.0 %</td><td class="p-2 border">7.8</td><td class="p-2 border"></td></tr>
+                `
+            },
+            "VOV124": {
+                header: "Vovinam 2 (VOV124) (H1_VOV124_7C, from 13/05/2026 - 27/06/2026)",
+                avg: "8.5",
+                status: "PASSED",
+                rows: `
+                    <tr><td class="p-2 border" rowspan="2">Practical</td><td class="p-2 border">Vovinam Test</td><td class="p-2 border">50.0 %</td><td class="p-2 border">8.5</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">50.0 %</td><td class="p-2 border">8.5</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="2">Final Exam</td><td class="p-2 border">Final Vovinam Test</td><td class="p-2 border">50.0 %</td><td class="p-2 border">8.5</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">50.0 %</td><td class="p-2 border">8.5</td><td class="p-2 border"></td></tr>
+                `
+            },
+            "WED201c": {
+                header: "Web Design (WED201c) (WED201c_SU26_14, from 21/05/2026 - 06/08/2026)",
+                avg: "8.5",
+                status: "PASSED",
+                rows: `
+                    <tr><td class="p-2 border" rowspan="3">Lab Assignment</td><td class="p-2 border">Lab 1-4</td><td class="p-2 border">20.0 %</td><td class="p-2 border">9.0</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border">Lab 5-8</td><td class="p-2 border">20.0 %</td><td class="p-2 border">8.5</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">40.0 %</td><td class="p-2 border">8.75</td><td class="p-2 border"></td></tr>
+                    <tr><td class="p-2 border" rowspan="2">Practical Exam</td><td class="p-2 border">Practical Exam</td><td class="p-2 border">60.0 %</td><td class="p-2 border">8.3</td><td class="p-2 border"></td></tr>
+                    <tr class="bg-gray-50 font-semibold"><td class="p-2 border">Total</td><td class="p-2 border">60.0 %</td><td class="p-2 border">8.3</td><td class="p-2 border"></td></tr>
+                `
+            }
+        };
+
+        function loadCourse(code) {
+            event.preventDefault();
+            
+            // Xử lý đổi màu active trên menu trái
+            document.querySelectorAll('.course-item').forEach(el => {
+                el.classList.remove('font-bold', 'bg-yellow-100', 'p-0.5', 'rounded');
+            });
+            event.target.classList.add('font-bold', 'bg-yellow-100', 'p-0.5', 'rounded');
+
+            const data = database[code];
+            if (data) {
+                document.getElementById('course-title-header').innerText = data.header;
+                document.getElementById('grade-table-body').innerHTML = data.rows;
+                document.getElementById('total-average').innerText = data.avg;
+                document.getElementById('total-status').innerText = data.status;
+                document.getElementById('summary-section').style.display = 'block';
+            }
+        }
+
+        // Mặc định load sẵn môn NWC204 khi mở trang (hoặc bạn có thể đổi thành mã khác)
+        window.onload = function() {
+            const firstLink = document.querySelector('a[onclick*="NWC204"]');
+            if(firstLink) {
+                firstLink.click();
+            }
+        }
+    </script>
+</body>
+</html>
